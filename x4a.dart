@@ -16,11 +16,13 @@ String checkTemperature(int temp) {
   }
 
   if (temp >= freezing && temp <= coolMax) {
-    return 'cold';
+    // проверка на t>=0 и 15<=t
+    return 'cold'; // если верно возввращает 'cold' если нет идем дальше
   } else if (temp > coolMax && temp < warmMax) {
-    return 'warm';
+    // проверка на t>15 и 25<t
+    return 'warm'; // если верно возвращает 'warm' если нет идем дальше
   } else {
-    return 'very warm';
+    return 'very warm'; // если t выше и не подходит по параметрам то t = very varm
   }
 }
 
