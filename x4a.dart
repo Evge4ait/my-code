@@ -3,7 +3,7 @@ void main() {
 }
 
 String checkFreezing(int temp) =>
-    temp < 0 ? 'very cold' : 'not freezing'; // проверка на мороз
+    temp < 0 ? 'very cold' : 'not freezing'; // проверка на мороз надо не позабыть про not freezing !!
 
 String checkTemperature(int temp) {
   const freezing = 0; // меняемые константы
