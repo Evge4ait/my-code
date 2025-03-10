@@ -19,7 +19,7 @@ String checkTemperature(int temp) {
     // проверка на 0 <= t <= 15
     return 'cold'; // если верно возввращает 'cold' если нет идем дальше
   } else if (temp > coolMax && temp <= warmMax) {
-    // проверка на 0 <= t <= 25
+    // проверка на 15 <= t <= 25
     return 'warm'; // если верно возвращает 'warm' если нет идем дальше
   } else {
     return 'very warm'; // если t выше и не подходит по параметрам то t = very varm
