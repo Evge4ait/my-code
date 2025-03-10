@@ -16,10 +16,10 @@ String checkTemperature(int temp) {
   }
 
   if (temp >= freezing && temp <= coolMax) {
-    // проверка на t>=0 и 15<=t
+    // проверка на 0 <= t <= 15
     return 'cold'; // если верно возввращает 'cold' если нет идем дальше
-  } else if (temp > coolMax && temp < warmMax) {
-    // проверка на t>15 и 25<t
+  } else if (temp > coolMax && temp <= warmMax) {
+    // проверка на 0 <= t <= 25
     return 'warm'; // если верно возвращает 'warm' если нет идем дальше
   } else {
     return 'very warm'; // если t выше и не подходит по параметрам то t = very varm
@@ -33,4 +33,4 @@ void makeTask(Function task) {
 }
 
 void doSomething(int temp) =>
-    print('Weather outside:  ' + checkTemperature(temp));
+    print('Weather outside: ${checkTemperature(temp)}');
