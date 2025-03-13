@@ -1,29 +1,41 @@
 void main() {
-  makeTask(() => doSomething(10)); // передает заданную температуру
+  makeTask(() => doSomething(40)); // передает заданную температуру
   makeTask(() => doSomething(-300)); // для теста на ошибку
+}
+
+enum Weather {
+  veryCold('very cold'),
+  cold('cold'),
+  warm('warm'),
+  veryWarm('very warm'),
+  hot('hot');
+
+  final String description;
+  const Weather(this.description);
 }
 
 String checkFreezing(int temp) =>
     temp < 0 ? 'very cold' : 'not freezing'; // проверка на мороз
 
-String checkTemperature(int temp) {
+Weather checkTemperature(int temp) {
   const freezing = 0; // настраиваемые значения
   const coolMax = 15;
   const warmMax = 25;
+  const hotThreshold = 35;
 
   if (temp < -273) {
     throw Exception('Incorrect temperature $temp°C ');
-  }
-  bool isFreezing(int temp) => temp < 0; // проверка что температура ниже нуля
-  if (isFreezing(temp)) {
-    return 'very cold $temp°C';
+  } //проверка на ошибку недопустимая температура
+  if (temp < freezing) {
+    return Weather.veryCold;
   } else if (temp <= coolMax) {
-    return 'cold $temp°C';
+    return Weather.cold;
   } else if (temp <= warmMax) {
-    // предыдущие условия исключают t <= coolMax
-    return 'warm $temp°C';
+    return Weather.warm; // предыдущие условия исключают t <= coolMax
+  } else if (temp <= hotThreshold) {
+    return Weather.veryWarm;
   } else {
-    return 'very warm $temp°C';
+    return Weather.hot;
   }
 }
 
@@ -35,8 +47,8 @@ void makeTask(Function task) {
 
 void doSomething(int temp) {
   try {
-    String result = checkTemperature(temp);
-    print('Weathr outside: $result');
+    Weather result = checkTemperature(temp);
+    print('Weather outside: ${result.description}, $temp°C');
   } catch (e) {
     print('Error: ${e.toString()}');
   }
